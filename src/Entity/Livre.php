@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\LivreRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -37,6 +39,16 @@ class Livre
      * @ORM\JoinColumn(nullable=false)
      */
     private $categorie;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Emprunt::class, mappedBy="livre")
+     */
+    private $emprunts;
+
+    public function __construct()
+    {
+        $this->emprunts = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -87,6 +99,36 @@ class Livre
     public function setCategorie(?Categorie $categorie): self
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Emprunt[]
+     */
+    public function getEmprunts(): Collection
+    {
+        return $this->emprunts;
+    }
+
+    public function addEmprunt(Emprunt $emprunt): self
+    {
+        if (!$this->emprunts->contains($emprunt)) {
+            $this->emprunts[] = $emprunt;
+            $emprunt->setLivre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEmprunt(Emprunt $emprunt): self
+    {
+        if ($this->emprunts->removeElement($emprunt)) {
+            // set the owning side to null (unless already changed)
+            if ($emprunt->getLivre() === $this) {
+                $emprunt->setLivre(null);
+            }
+        }
 
         return $this;
     }
