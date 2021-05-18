@@ -22,14 +22,14 @@ class LivreFixtures extends Fixture
 
             // Création Livres
             // ***************
-            // for ($l = 1; $l <= 20; $l++) {
-            //     $book = new Livre();
-            //     $book->
-            //         ->setTitre($faker->word())
-            //         ->setAuteur($faker->word())
-            //         ->setAnnee($faker->year($max = 'now'));
-            //     $manager->persist($book);
-            // }
+            for ($l = 1; $l <= 20; $l++) {
+                $book = new Livre();
+                $book->setTitre($faker->word())
+                    ->setAuteur($faker->word())
+                    ->setAnnee($faker->year($max = 'now'))
+                    ->setCategorie($category);
+                $manager->persist($book);
+            }
         }
 
         $manager->flush();
