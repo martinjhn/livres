@@ -48,9 +48,9 @@ class Utilisateur
     private $motDePasse;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      */
-    private $role;
+    private $confirm;
 
     public function getId(): ?int
     {
@@ -129,14 +129,14 @@ class Utilisateur
         return $this;
     }
 
-    public function getRole(): ?int
+    public function getConfirm(): ?string
     {
-        return $this->role;
+        return $this->confirm;
     }
 
-    public function setRole(int $role): self
+    public function setConfirm(string $confirm): self
     {
-        $this->role = $role;
+        $this->confirm = $confirm;
 
         return $this;
     }
