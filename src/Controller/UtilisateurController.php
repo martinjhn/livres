@@ -11,13 +11,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-/**
- * @Route("/utilisateur")
- */
+
 class UtilisateurController extends AbstractController
 {
 	/**
-	 * @Route("/", name="utilisateur_index", methods={"GET"})
+	 * @Route("/admin/utilisateur/", name="utilisateur_index", methods={"GET"})
 	 */
 	public function index(UtilisateurRepository $utilisateurRepository): Response
 	{
@@ -27,7 +25,7 @@ class UtilisateurController extends AbstractController
 	}
 
 	/**
-	 * @Route("/new", name="utilisateur_new", methods={"GET","POST"})
+	 * @Route("/admin/utilisateur/new", name="utilisateur_new", methods={"GET","POST"})
 	 */
 	public function new(Request $request): Response
 	{
@@ -50,7 +48,7 @@ class UtilisateurController extends AbstractController
 	}
 
 	/**
-	 * @Route("/{id}", name="utilisateur_show", methods={"GET"})
+	 * @Route("/utilisateur/{id}", name="utilisateur_show", methods={"GET"})
 	 */
 	public function show(Utilisateur $utilisateur): Response
 	{
@@ -60,7 +58,7 @@ class UtilisateurController extends AbstractController
 	}
 
 	/**
-	 * @Route("/{id}/edit", name="utilisateur_edit", methods={"GET","POST"})
+	 * @Route("/utilisateur/{id}/edit", name="utilisateur_edit", methods={"GET","POST"})
 	 */
 	public function edit(Request $request, Utilisateur $utilisateur, UserPasswordEncoderInterface $passwordEncoder): Response
 	{
@@ -82,7 +80,7 @@ class UtilisateurController extends AbstractController
 	}
 
 	/**
-	 * @Route("/{id}", name="utilisateur_delete", methods={"POST"})
+	 * @Route("/admin/utilisateur/{id}", name="utilisateur_delete", methods={"POST"})
 	 */
 	public function delete(Request $request, Utilisateur $utilisateur): Response
 	{
