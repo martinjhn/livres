@@ -15,8 +15,7 @@ class LivreType extends AbstractType
             ->add('titre')
             ->add('auteur')
             ->add('annee')
-            ->add('categorie')
-        ;
+            ->add('categorie');
     }
 
     public function configureOptions(OptionsResolver $resolver)

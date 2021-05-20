@@ -1,20 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello LibrairieController!{% endblock %}
+{% block title %}Bibliothèque: Liste des Livres{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    {# Afficher les messages d'erreur 
+    type = 'error'
+    #}
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endfor %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/77011-61-01/Documents/livres/src/Controller/LibrairieController.php'|file_link(0) }}">src/Controller/LibrairieController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/77011-61-01/Documents/livres/templates/librairie/index.html.twig'|file_link(0) }}">templates/librairie/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <h1 class="text-center">Voici nos Livres</h1>
+
+    <table class="table table-hover">
+        <thead>
+            <tr class="table-info">
+                <th class="text-center">Titre du Livre</th>
+                <th class="text-center">Auteur du livre</th>
+                <th class="text-center">Date publication</th>
+                <th class="text-center">Catégorie du livre</th>
+                {# {% if is_granted('ROLE_ADMIN') %}
+                    <th colspan="2" class="text-center"><a href="{{ path('new_prod') }}" class="btn btn-success fa fa-plus-square"></a></th>
+                {% else %}
+                    <th></th>
+                {% endif %} #}
+            </tr>
+        </thead>
+        <tbody>
+            {% for livre in livres %}
+                <tr class="
+                    {% if loop.index is divisible by(2) %}
+                        table-light
+                    {% else %}
+                        table-dark
+                    {% endif %}">
+                    <td class="text-center">{{ livre.titre }}</td>
+                    <td class="text-center">{{ livre.auteur }}</td>
+                    <td class="text-center">{{ livre.annee|trans}}</td>
+                    <td class="text-center">{{ livre.categorie.nom }}</td>
+                    {# {% if is_granted('ROLE_ADMIN') %}
+                        <td><a href="{{ path('edit_prod', {'id': prod.id}) }}" class="fa fa-edit"></a></td>
+                        <td><a href="{{ path('delete_prod', {'id': prod.id}) }}" class="fa fa-trash"></a></td>
+                    {% else %}
+                        <td><a href="{{ path('add_cart', {'id': prod.id}) }}" class="fa fa-cart-plus"></a></td>
+                    {% endif %} #}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
 {% endblock %}
