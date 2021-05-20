@@ -10,13 +10,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/livre")
- */
+
 class LivreController extends AbstractController
 {
     /**
-     * @Route("/", name="livre_index", methods={"GET"})
+     * @Route("/livre/", name="livre_index", methods={"GET"})
      */
     public function index(LivreRepository $livreRepository): Response
     {
@@ -26,7 +24,7 @@ class LivreController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="livre_new", methods={"GET","POST"})
+     * @Route("/admin/livre/new", name="livre_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -49,7 +47,7 @@ class LivreController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="livre_show", methods={"GET"})
+     * @Route("/livre/{id}", name="livre_show", methods={"GET"})
      */
     public function show(Livre $livre): Response
     {
@@ -59,7 +57,7 @@ class LivreController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="livre_edit", methods={"GET","POST"})
+     * @Route("/admin/livre/{id}/edit", name="livre_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Livre $livre): Response
     {
@@ -79,11 +77,11 @@ class LivreController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="livre_delete", methods={"POST"})
+     * @Route("/admin/livre/{id}", name="livre_delete", methods={"POST"})
      */
     public function delete(Request $request, Livre $livre): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$livre->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $livre->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($livre);
             $entityManager->flush();

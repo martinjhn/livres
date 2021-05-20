@@ -10,13 +10,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/emprunt")
- */
+
 class EmpruntController extends AbstractController
 {
     /**
-     * @Route("/", name="emprunt_index", methods={"GET"})
+     * @Route("/emprunt/", name="emprunt_index", methods={"GET"})
      */
     public function index(EmpruntRepository $empruntRepository): Response
     {
@@ -26,7 +24,7 @@ class EmpruntController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="emprunt_new", methods={"GET","POST"})
+     * @Route("/emprunt/new", name="emprunt_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -49,7 +47,7 @@ class EmpruntController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="emprunt_show", methods={"GET"})
+     * @Route("/emprunt/{id}", name="emprunt_show", methods={"GET"})
      */
     public function show(Emprunt $emprunt): Response
     {
@@ -59,7 +57,7 @@ class EmpruntController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="emprunt_edit", methods={"GET","POST"})
+     * @Route("/admin/emprunt/{id}/edit", name="emprunt_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Emprunt $emprunt): Response
     {
@@ -79,11 +77,11 @@ class EmpruntController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="emprunt_delete", methods={"POST"})
+     * @Route("/admin/emprunt/{id}", name="emprunt_delete", methods={"POST"})
      */
     public function delete(Request $request, Emprunt $emprunt): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$emprunt->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $emprunt->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($emprunt);
             $entityManager->flush();
