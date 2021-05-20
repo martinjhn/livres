@@ -5,10 +5,11 @@ namespace App\Controller;
 use App\Entity\Emprunt;
 use App\Form\EmpruntType;
 use App\Repository\EmpruntRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 class EmpruntController extends AbstractController
