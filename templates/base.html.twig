@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.6.0/dist/cerulean/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
@@ -30,10 +32,10 @@
                     {# on limite category affichera que pour administrateur #}
                     {% if is_granted('ROLE_ADMIN') %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('category') }}">Catégories</a>
+                            <a class="nav-link" href="{{ path('category_index') }}">Catégories</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('user_index') }}">Information Utilisateur</a>
+                            <a class="nav-link" href="{{ path('utilisateur_index') }}">Information Utilisateur</a>
                         </li>
                     {% endif %}
                     {# <li class="nav-item">
@@ -53,7 +55,7 @@
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion | <strong>({{ app.user.firstname }} {{ app.user.lastname }})</strong></a>
+                            <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion | <strong>({{ app.user.prenom }} {{ app.user.nom }})</strong></a>
                         </li>
                     {% endif %}
                 </ul>
