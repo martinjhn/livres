@@ -1,22 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Utilisateur index{% endblock %}
+{% block title %}Liste Utilisateur(s){% endblock %}
 
 {% block body %}
-    <h1>Utilisateur index</h1>
+    <h1>Liste Utilisateur(s)</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <th>Email</th>
-                <th>Roles</th>
-                <th>Password</th>
+                <th>Status</th>
+                <th>Mot de Passe</th>
                 <th>Nom</th>
-                <th>Prenom</th>
+                <th>Prénom</th>
                 <th>Adresse</th>
-                <th>Tel</th>
-                <th>actions</th>
+                <th>Téléphone</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -31,8 +31,8 @@
                 <td>{{ utilisateur.adresse }}</td>
                 <td>{{ utilisateur.tel }}</td>
                 <td>
-                    <a href="{{ path('utilisateur_show', {'id': utilisateur.id}) }}">show</a>
-                    <a href="{{ path('utilisateur_edit', {'id': utilisateur.id}) }}">edit</a>
+                    <a href="{{ path('utilisateur_show', {'id': utilisateur.id}) }}">Détail d'Utilisateur</a>
+                    <a href="{{ path('utilisateur_edit', {'id': utilisateur.id}) }}">Editer Utilisateur</a>
                 </td>
             </tr>
         {% else %}
@@ -43,5 +43,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('utilisateur_new') }}">Create new</a>
+    <a href="{{ path('utilisateur_new') }}">Créer un Nouveau Utilisateur</a>
 {% endblock %}

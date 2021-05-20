@@ -8,7 +8,7 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <td>{{ utilisateur.id }}</td>
             </tr>
             <tr>
@@ -16,11 +16,11 @@
                 <td>{{ utilisateur.email }}</td>
             </tr>
             <tr>
-                <th>Roles</th>
+                <th>Status</th>
                 <td>{{ utilisateur.roles ? utilisateur.roles|json_encode : '' }}</td>
             </tr>
             <tr>
-                <th>Password</th>
+                <th>Mot de Passe</th>
                 <td>{{ utilisateur.password }}</td>
             </tr>
             <tr>
@@ -28,7 +28,7 @@
                 <td>{{ utilisateur.nom }}</td>
             </tr>
             <tr>
-                <th>Prenom</th>
+                <th>Prénom</th>
                 <td>{{ utilisateur.prenom }}</td>
             </tr>
             <tr>
@@ -36,15 +36,15 @@
                 <td>{{ utilisateur.adresse }}</td>
             </tr>
             <tr>
-                <th>Tel</th>
+                <th>Téléphone</th>
                 <td>{{ utilisateur.tel }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('utilisateur_index') }}">back to list</a>
+    <a href="{{ path('utilisateur_index') }}">Retourner à la liste</a>
 
-    <a href="{{ path('utilisateur_edit', {'id': utilisateur.id}) }}">edit</a>
+    <a href="{{ path('utilisateur_edit', {'id': utilisateur.id}) }}">Editer</a>
 
     {{ include('utilisateur/_delete_form.html.twig') }}
 {% endblock %}
