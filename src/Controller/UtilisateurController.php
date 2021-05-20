@@ -15,7 +15,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class UtilisateurController extends AbstractController
 {
 	/**
-	 * @Route("/utilisateur/", name="utilisateur_index", methods={"GET"})
+	 * @Route("/admin/utilisateur/", name="utilisateur_index", methods={"GET"})
 	 */
 	public function index(UtilisateurRepository $utilisateurRepository): Response
 	{
@@ -25,7 +25,7 @@ class UtilisateurController extends AbstractController
 	}
 
 	/**
-	 * @Route("/utilisateur/new", name="utilisateur_new", methods={"GET","POST"})
+	 * @Route("/admin/utilisateur/new", name="utilisateur_new", methods={"GET","POST"})
 	 */
 	public function new(Request $request): Response
 	{
@@ -48,7 +48,7 @@ class UtilisateurController extends AbstractController
 	}
 
 	/**
-	 * @Route("/admin/utilisateur/{id}", name="utilisateur_show", methods={"GET"})
+	 * @Route("/utilisateur/{id}", name="utilisateur_show", methods={"GET"})
 	 */
 	public function show(Utilisateur $utilisateur): Response
 	{
