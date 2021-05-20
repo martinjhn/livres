@@ -26,7 +26,7 @@ class CategorieController extends AbstractController
     }
 
     /**
-     * @Route("/categorie/new", name="categorie_new", methods={"GET","POST"})
+     * @Route("/admin/categorie/new", name="categorie_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -59,7 +59,7 @@ class CategorieController extends AbstractController
     }
 
     /**
-     * @Route("/categorie/{id}/edit", name="categorie_edit", methods={"GET","POST"})
+     * @Route("/admin/categorie/{id}/edit", name="categorie_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Categorie $categorie): Response
     {
@@ -79,7 +79,7 @@ class CategorieController extends AbstractController
     }
 
     /**
-     * @Route("/categorie/{id}", name="categorie_delete", methods={"POST"})
+     * @Route("/admin/categorie/{id}", name="categorie_delete", methods={"POST"})
      */
     public function delete(Request $request, Categorie $categorie): Response
     {

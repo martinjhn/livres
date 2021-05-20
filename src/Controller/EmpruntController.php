@@ -10,9 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/emprunt")
- */
+
 class EmpruntController extends AbstractController
 {
     /**
@@ -59,7 +57,7 @@ class EmpruntController extends AbstractController
     }
 
     /**
-     * @Route("/emprunt/{id}/edit", name="emprunt_edit", methods={"GET","POST"})
+     * @Route("/admin/emprunt/{id}/edit", name="emprunt_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Emprunt $emprunt): Response
     {
@@ -79,7 +77,7 @@ class EmpruntController extends AbstractController
     }
 
     /**
-     * @Route("/emprunt/{id}", name="emprunt_delete", methods={"POST"})
+     * @Route("/admin/emprunt/{id}", name="emprunt_delete", methods={"POST"})
      */
     public function delete(Request $request, Emprunt $emprunt): Response
     {
