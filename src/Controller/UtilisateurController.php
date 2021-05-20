@@ -16,8 +16,9 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class UtilisateurController extends AbstractController
 {
 	/**
-	 * @Route("/admin/utilisateur/", name="utilisateur_index", methods={"GET"})
-	 */
+    * @IsGranted("ROLE_ADMIN", StatusCode=401, message="Accès refusé à cette page")
+	* @Route("/admin/utilisateur/", name="utilisateur_index", methods={"GET"})
+	*/
 	public function index(UtilisateurRepository $utilisateurRepository): Response
 	{
 		return $this->render('utilisateur/index.html.twig', [
@@ -26,8 +27,9 @@ class UtilisateurController extends AbstractController
 	}
 
 	/**
-	 * @Route("/admin/utilisateur/new", name="utilisateur_new", methods={"GET","POST"})
-	 */
+    * @IsGranted("ROLE_ADMIN", StatusCode=401, message="Accès refusé à cette page")
+	* @Route("/admin/utilisateur/new", name="utilisateur_new", methods={"GET","POST"})
+	*/
 	public function new(Request $request): Response
 	{
 		$utilisateur = new Utilisateur();
@@ -81,8 +83,9 @@ class UtilisateurController extends AbstractController
 	}
 
 	/**
-	 * @Route("/admin/utilisateur/{id}", name="utilisateur_delete", methods={"POST"})
-	 */
+    * @IsGranted("ROLE_ADMIN", StatusCode=401, message="Accès refusé à cette page")
+	* @Route("/admin/utilisateur/{id}", name="utilisateur_delete", methods={"POST"})
+	*/
 	public function delete(Request $request, Utilisateur $utilisateur): Response
 	{
 		if ($this->isCsrfTokenValid('delete' . $utilisateur->getId(), $request->request->get('_token'))) {
