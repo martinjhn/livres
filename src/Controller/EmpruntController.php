@@ -14,7 +14,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class EmpruntController extends AbstractController
 {
     /**
-     * @Route("/emprunt/", name="emprunt_index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN", StatusCode=401, message="Accès refusé à cette page")
+     * @Route("admin/emprunt/", name="emprunt_index", methods={"GET"})
      */
     public function index(EmpruntRepository $empruntRepository): Response
     {
@@ -24,8 +25,9 @@ class EmpruntController extends AbstractController
     }
 
     /**
-     * @Route("/emprunt/new", name="emprunt_new", methods={"GET","POST"})
-     */
+    * @IsGranted("ROLE_ADMIN", StatusCode=401, message="Accès refusé à cette page")
+    * @Route("admin/emprunt/new", name="emprunt_new", methods={"GET","POST"})
+    */
     public function new(Request $request): Response
     {
         $emprunt = new Emprunt();
@@ -51,14 +53,17 @@ class EmpruntController extends AbstractController
      */
     public function show(Emprunt $emprunt): Response
     {
-        return $this->render('emprunt/show.html.twig', [
-            'emprunt' => $emprunt,
-        ]);
+        if($this->getUser()) {
+            return $this->render('emprunt/show.html.twig', [
+                'emprunt' => $emprunt,
+            ]);
+        }
     }
 
     /**
-     * @Route("/admin/emprunt/{id}/edit", name="emprunt_edit", methods={"GET","POST"})
-     */
+    * @IsGranted("ROLE_ADMIN", StatusCode=401, message="Accès refusé à cette page")
+    * @Route("/admin/emprunt/{id}/edit", name="emprunt_edit", methods={"GET","POST"})
+    */
     public function edit(Request $request, Emprunt $emprunt): Response
     {
         $form = $this->createForm(EmpruntType::class, $emprunt);
@@ -77,8 +82,9 @@ class EmpruntController extends AbstractController
     }
 
     /**
-     * @Route("/admin/emprunt/{id}", name="emprunt_delete", methods={"POST"})
-     */
+    * @IsGranted("ROLE_ADMIN", StatusCode=401, message="Accès refusé à cette page")
+    * @Route("/admin/emprunt/{id}", name="emprunt_delete", methods={"POST"})
+    */
     public function delete(Request $request, Emprunt $emprunt): Response
     {
         if ($this->isCsrfTokenValid('delete' . $emprunt->getId(), $request->request->get('_token'))) {

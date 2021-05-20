@@ -24,6 +24,7 @@ class LivreController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN", StatusCode=401, message="Accès refusé à cette page")
      * @Route("/admin/livre/new", name="livre_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
@@ -57,6 +58,7 @@ class LivreController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN", StatusCode=401, message="Accès refusé à cette page")
      * @Route("/admin/livre/{id}/edit", name="livre_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Livre $livre): Response
@@ -77,6 +79,7 @@ class LivreController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN", StatusCode=401, message="Accès refusé à cette page")
      * @Route("/admin/livre/{id}", name="livre_delete", methods={"POST"})
      */
     public function delete(Request $request, Livre $livre): Response

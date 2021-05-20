@@ -12,13 +12,13 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
- * @Route("/utilisateur")
- */
+* @Route("/utilisateur")
+*/
 class UtilisateurController extends AbstractController
 {
 	/**
-	 * @Route("/", name="utilisateur_index", methods={"GET"})
-	 */
+	* @Route("/", name="utilisateur_index", methods={"GET"})
+	*/
 	public function index(UtilisateurRepository $utilisateurRepository): Response
 	{
 		return $this->render('utilisateur/index.html.twig', [
@@ -27,8 +27,8 @@ class UtilisateurController extends AbstractController
 	}
 
 	/**
-	 * @Route("/new", name="utilisateur_new", methods={"GET","POST"})
-	 */
+	* @Route("/new", name="utilisateur_new", methods={"GET","POST"})
+	*/
 	public function new(Request $request): Response
 	{
 		$utilisateur = new Utilisateur();
@@ -50,8 +50,8 @@ class UtilisateurController extends AbstractController
 	}
 
 	/**
-	 * @Route("/{id}", name="utilisateur_show", methods={"GET"})
-	 */
+	* @Route("/{id}", name="utilisateur_show", methods={"GET"})
+	*/
 	public function show(Utilisateur $utilisateur): Response
 	{
 		return $this->render('utilisateur/show.html.twig', [
@@ -60,8 +60,8 @@ class UtilisateurController extends AbstractController
 	}
 
 	/**
-	 * @Route("/{id}/edit", name="utilisateur_edit", methods={"GET","POST"})
-	 */
+	* @Route("/{id}/edit", name="utilisateur_edit", methods={"GET","POST"})
+	*/
 	public function edit(Request $request, Utilisateur $utilisateur, UserPasswordEncoderInterface $passwordEncoder): Response
 	{
 		$form = $this->createForm(UtilisateurType::class, $utilisateur);
@@ -82,6 +82,7 @@ class UtilisateurController extends AbstractController
 	}
 
 	/**
+     * @IsGranted("ROLE_ADMIN", StatusCode=401, message="Accès refusé à cette page")
 	 * @Route("/{id}", name="utilisateur_delete", methods={"POST"})
 	 */
 	public function delete(Request $request, Utilisateur $utilisateur): Response
