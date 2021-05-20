@@ -5,10 +5,11 @@ namespace App\Controller;
 use App\Entity\Livre;
 use App\Form\LivreType;
 use App\Repository\LivreRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 class LivreController extends AbstractController
@@ -24,6 +25,7 @@ class LivreController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN", StatusCode=401, message="Accès refusé à cette page")
      * @Route("/admin/livre/new", name="livre_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
@@ -57,6 +59,7 @@ class LivreController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN", StatusCode=401, message="Accès refusé à cette page")
      * @Route("/admin/livre/{id}/edit", name="livre_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Livre $livre): Response
@@ -77,6 +80,7 @@ class LivreController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN", StatusCode=401, message="Accès refusé à cette page")
      * @Route("/admin/livre/{id}", name="livre_delete", methods={"POST"})
      */
     public function delete(Request $request, Livre $livre): Response
