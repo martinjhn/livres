@@ -40,8 +40,8 @@ class Utilisateur
     private $tel;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
+    * @ORM\Column(type="string", length=255)
+    */
     private $courriel;
 
     /**

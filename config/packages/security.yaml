@@ -1,4 +1,9 @@
 security:
+    enable_authenticator_manager: true
+    encoders:
+        App\Entity\Utilisateur:
+            algorithm: bcrypt
+
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         users_in_memory: { memory: null }
@@ -6,13 +11,19 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        main:
-            anonymous: true
-            lazy: true
-            provider: users_in_memory
-            guard:
-                authenticators:
-                    - App\Security\UtilisateurAuthenticator
+
+    app_user_provider:
+        entity:
+            class: App\Entity\Utilisateur
+            property: email
+
+  #      main:
+  #         anonymous: true
+#         lazy: true
+ #           provider: users_in_memory
+  #          guard:
+  #              authenticators:
+   #                 - App\Security\UtilisateurAuthenticator
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
